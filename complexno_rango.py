@@ -2,6 +2,10 @@ from __future__ import division
 class ComplexNumber: 
 
 	def __init__(self,a=0,b=0):
+		if not (isinstance(a,int) or isinstance(a,float)):
+			raise TypeError("Real part should be a real number")
+		if not (isinstance(b,int) or isinstance(b,float)):
+			raise TypeError("Imaginary part should be a real number")
 		self.a = a
 		self.b = b
 
@@ -24,6 +28,8 @@ class ComplexNumber:
 
 	def __truediv__(self,other):
 		mod = (other.a)**2 + (other.b)**2
+		if(mod==0):
+			raise AssertionError("Cannot divide by zero.")
 		otherT = ComplexNumber(other.a/mod,-other.b/mod)
 		return self*otherT
 
