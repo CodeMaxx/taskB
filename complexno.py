@@ -58,3 +58,9 @@ class ComplexNumber:
 
 	def __ne__(self,other):
 		return not self==other
+
+	def __repr__(self):
+		if(self.b < 0):
+			return "%.4f - i%.4f"%(self.a,-self.b)
+		else:
+			return "%.4f + i%.4f"%(self.a,self.b)
