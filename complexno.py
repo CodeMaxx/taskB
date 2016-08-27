@@ -61,9 +61,33 @@ class ComplexNumber:
 
 	def mysquare(self):
 		return self*self
-		
+
 	def __repr__(self):
 		if(self.b < 0):
 			return "%.4f - i%.4f"%(self.a,-self.b)
 		else:
 			return "%.4f + i%.4f"%(self.a,self.b)
+
+	# Some better duck-typing
+
+	def __radd__(self,other):
+		return self.__add__(other)
+
+	def __rmul__(self,other):
+		return self.__mul__(other)
+
+	def __rsub__(self,other):
+		if isinstance(other,(int,float)):
+			return ComplexNumber(other-self.a,-self.b)
+		elif isinstance(other,ComplexNumber):
+			return other.__sub__(self)
+		else:
+			raise AssertionError("Other entity must be a number. (Real or complex)")
+
+	def __rtruediv__(self,other):
+		if(isinstance(other,ComplexNumber)):
+			return other.__truediv__(self)
+		elif isinstance(other,(int,float)):
+			return ComplexNumber(1,0)/self*other
+		else:
+			raise AssertionError("Other entity must be a number. (Real or complex)")
