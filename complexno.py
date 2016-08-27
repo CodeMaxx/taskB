@@ -53,8 +53,16 @@ class ComplexNumber:
 			else:
 				return ComplexNumber(self.a/other,self.b/other)
 
-	def __eq__(self,other):
-		return (self.a == other.a and self.b == other.b)
+	def __eq__(self,other):												### Works on both sides of the equation
+		if isinstance(other,ComplexNumber):
+			return (self.a == other.a and self.b == other.b)
+		elif isinstance(other,(int,float)):
+			if self.b == 0 and self.a == other:
+				return True
+			else:
+				return False
+		else:
+			return False
 
 	def __ne__(self,other):
 		return not self==other
