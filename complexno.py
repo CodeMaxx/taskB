@@ -61,3 +61,9 @@ class ComplexNumber:
 
 	def mysquare(self):
 		return self*self
+		
+	def __repr__(self):
+		if(self.b < 0):
+			return "%.4f - i%.4f"%(self.a,-self.b)
+		else:
+			return "%.4f + i%.4f"%(self.a,self.b)
