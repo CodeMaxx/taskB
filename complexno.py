@@ -9,7 +9,10 @@ class ComplexNumber:
 		self.b = b
 
 	def __str__(self):
-		return "(%.4f,%.4f)"%(self.a,self.b)
+		if(self.b < 0):
+			return "%.4f - j.%.4f"%(self.a,-self.b)
+		else:
+			return "%.4f + j.%.4f"%(self.a,self.b)
 
 	def __add__(self,other):
 		if isinstance(other,ComplexNumber):
